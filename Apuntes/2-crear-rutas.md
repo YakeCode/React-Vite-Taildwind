@@ -5,6 +5,8 @@ despues de definir cuales con las pagonas que vamos a tener en nuestra pagina-ap
 * importamos -import { useRoutes, BrowserRouter } from 'react-router-dom'-
 * creamos una funcion para manejar las rutas, en el path se pone la ruta y en el elemento le indicamos de cual pagina
 
+* Dentro de la etiqueta path ponemos la ruta va a utilizar, y dentro de el elemento, vamos a poner a que componente o pagina hace referencia
+
     const AppRoutes = ()=>{
   let routes = useRoutes (
     [
