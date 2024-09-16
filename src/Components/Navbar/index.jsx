@@ -8,7 +8,7 @@ const Navbar = () => {
 
     return (
 
-        <nav className="w-full flex justify-around items-center fixed z-10 py-4 px-8 text-sm font-light">
+        <nav className="top-0 w-full flex justify-around items-center fixed z-10 py-4 px-8 text-sm font-light">
         {/*left nav */}
             <ul className="flex items-center gap-5">
                 <li className="font-semibold text-xl">

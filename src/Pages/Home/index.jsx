@@ -1,10 +1,13 @@
 //import React from 'react'
+import Card from "../../Components/Card"
+import { Layout } from "../../Components/Layout"
 
 function Home() {
     return (
-        <div className='bg-yellow-500'>
-            Home
-        </div>
+        <Layout>
+            <Card/>
+        </Layout>
+        
     )
 }
 

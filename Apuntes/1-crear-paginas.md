@@ -1,5 +1,9 @@
 # crear paginas
 
+* instalamos npm install react-router-dom
+
+* En el componente App.jsx importamos  { useRoutes, BrowserRouter } from 'react-router-dom'
+
 * En la carpera src creamos una carpera llamada 'Pages'
 
 * En la carpeta Pages creamos las carpetas con el nombre de las paginas que vamos a tener

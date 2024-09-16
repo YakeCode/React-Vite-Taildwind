@@ -1,8 +1,12 @@
-import React from 'react'
+//import React from 'react'
+import { Layout } from '../../Components/Layout'
 
 function SignIn() {
   return (
-    <div className='bg-red-600'>SignIn</div>
+    <Layout>
+      <div className='bg-red-600'>SignIn</div>
+    </Layout>
+    
   )
 }
 
