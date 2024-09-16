@@ -11,7 +11,7 @@ const Navbar = () => {
         <nav className="top-0 w-full flex justify-around items-center fixed z-10 py-4 px-8 text-sm font-light bg-white">
         {/*left nav */}
             <ul className="flex items-center gap-5">
-                <li className="font-semibold text-xl">
+                <li className="font-semibold text-2xl text-[#354A6F]/70">
                     <NavLink to='/'>
                         Shopi
                     </NavLink>

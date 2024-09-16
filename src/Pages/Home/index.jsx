@@ -18,7 +18,7 @@ function Home() {
 
     return (
         <Layout>
-            <div className=" w-full grid gap-5 grid-cols-3 max-w-screen-lg" >
+            <div className="w-[65%] grid grid-cols-[repeat(auto-fit,minmax(15rem,1fr))] gap-7 my-12" >
 
             {
                 items?.map( (item)=> (
