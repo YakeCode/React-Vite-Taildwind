@@ -1,6 +1,10 @@
+import { useContext } from "react"
+import { ShoppingCartContext } from "../../context"
+
 const Card = (data)=> {
 
-    
+    const context = useContext(ShoppingCartContext)
+
     return (
 
         <div  id={data.data.id} className="bg-white cursor-pointer w-60 h-64 rounded-lg mb-4 shadow-lg shadow-[#b0bccd] transition-transform transform hover:scale-[102%]">
@@ -15,7 +19,9 @@ const Card = (data)=> {
                 <img className="w-full h-full object-fill rounded-lg"
                 src={data.data.image} alt={data.data.title + 'img'}  />
 
-                <button className="absolute top-0 right-0 flex justify-center items-center rounded-md bg-[#59A0A2] text-[#C0D7BD] w-6 h-6 m-2 p-1 font-semibold text-md">
+                <button className="absolute top-0 right-0 flex justify-center items-center rounded-md bg-[#59A0A2] text-[#C0D7BD] w-6 h-6 m-2 p-1 font-semibold text-md" 
+                
+                onClick={()=>{context.setCount(context.count + 1)}}>
                     +
                 </button>
 
