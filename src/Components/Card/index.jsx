@@ -1,3 +1,4 @@
+import { PlusIcon } from "@heroicons/react/16/solid"
 import { useContext } from "react"
 import { ShoppingCartContext } from "../../context"
 
@@ -19,10 +20,12 @@ const Card = (data)=> {
                 <img className="w-full h-full object-fill rounded-lg"
                 src={data.data.image} alt={data.data.title + 'img'}  />
 
+                
+
                 <button className="absolute top-0 right-0 flex justify-center items-center rounded-md bg-[#59A0A2] text-[#C0D7BD] w-6 h-6 m-2 p-1 font-semibold text-md" 
                 
                 onClick={()=>{context.setCount(context.count + 1)}}>
-                    +
+                    <PlusIcon className="size-8"/>
                 </button>
 
             </figure>
