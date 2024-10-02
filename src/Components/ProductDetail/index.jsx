@@ -10,6 +10,13 @@ function ProductDetail() {
 
     const product = context.productToShow
 
+    const addProductsToCard = (productData)=> {
+        context.closeProductDetail()
+        context.setCount(context.count + 1);
+        context.setCartProducts([...context.cartProducts, productData])
+        context.openCheckoutSideMenu()
+    }
+
     useEffect(() => {
         if (context.productToShow.id) {
             console.log('show', context.productToShow)
@@ -32,39 +39,53 @@ function ProductDetail() {
                 </span>
             </div>
 
-            <div className="flex flex-col justify-evenly h-[100%] border ">
-                <figure className="w-full h-2/5 flex justify-center ">
+            <div className="flex flex-col justify-around h-[100%] border px-6">
+
+                <div className="w-full h-[40%] flex flex-col">
+                    <figure className="w-full h-[75%] flex  justify-center">
                     <img 
                         src={product.image} 
                         alt={product.title} 
-                        className="w-4/5 rounded-lg cover"/>
-                </figure>
+                        className="w-10/12 h-full rounded-lg cover"/>
+                    </figure>
 
-                <h2 className="w-full text-center text-[#354A6F]/70 font-semibold text-xl mb-0 p-0 " >
-                    {product.title}
-                </h2>
+                    <div className="h-15%">
+                        <h2 className="w-full text-center text-[#354A6F]/70 font-semibold text-xl mb-0 p-0 " >
+                            {product.title}
+                        </h2>
 
-                <h3 className="w-full text-center mt-0 mb-[3%] font-semibold p-0">
-                    {product.category}
-                </h3>
-
-                <p className="w-full py-[2%] px-2">
-                    {product.description}
-                </p>
-
-                <span className="w-full text-center font-semibold text-xl text-[#354A6F]/70 ">
-                    ${product.price}
-                </span>
-
-                <button className="w-full flex justify-center h-[7%] my-[2%]"
-                    onClick={()=>{context.setCount(context.count + 1)}}
-                >
-                    <div className="flex justify-center items-center bg-[#59A0A2] w-3/5 h-full text-white rounded-md"
-                    >
-                        <p>Add To Cart</p>
-                        <ShoppingCartIcon className=" size-7 "/>
+                        <h3 className="w-full text-center mt-0 mb-2 font-semibold p-0 h-[5%]">
+                            {product.category}
+                        </h3>
                     </div>
-                </button>
+
+                    
+
+                </div>
+
+                <div className="h-[55%] w-full flex flex-col">
+
+                    <p className="w-full h-[60%] mt-3 overflow-x-hidden text-wrap whitespace-nowrap">
+                        {product.description}
+                    </p>
+
+                    <span className="w-full h-[10%] flex justify-center align-center font-semibold text-xl text-[#354A6F]/70  ">
+                        ${product.price}
+                    </span>
+
+                    <button className="w-full flex justify-center h-[12%] items-center "
+                        onClick={()=>{addProductsToCard(context.productToShow)}}
+                    >
+                        <div className="flex justify-center items-center bg-[#59A0A2] w-3/5 h-full text-white rounded-md"
+                        >
+                            <p>Add To Cart</p>
+                            <ShoppingCartIcon className=" size-7 "/>
+                        </div>
+                    </button>
+
+                </div>
+
+                
 
             </div>
 

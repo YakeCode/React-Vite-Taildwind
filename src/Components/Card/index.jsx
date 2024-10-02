@@ -9,14 +9,14 @@ const Card = (data)=> {
     const showProduct = (productdetail)=>{
         context.openProductDetail()
         context.setProductToShow(productdetail)
+        context.closeCheckoutSideMenu()
     }
 
     const addProductsToCard = (productData)=> {
+        context.closeProductDetail()
         context.setCount(context.count + 1);
         context.setCartProducts([...context.cartProducts, productData])
         context.openCheckoutSideMenu()
-        context.closeProductDetail()
-        console.log('cart ',context.cartProducts)
     }
 
 
