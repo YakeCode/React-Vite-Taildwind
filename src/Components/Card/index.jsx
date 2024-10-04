@@ -19,6 +19,54 @@ const Card = (data)=> {
         context.openCheckoutSideMenu()
     }
 
+    const noClickInPlus = ()=>{
+
+        return (
+            <button className="absolute top-0 right-0 flex justify-center items-center rounded-md bg-[#59A0A2] text-[#C0D7BD] w-6 h-6 m-2 p-1 font-semibold text-md " 
+                
+                onClick={(noDetailOpen)=>{
+                    noDetailOpen.stopPropagation()
+                    addProductsToCard(data.data)
+                }}
+                >
+                    <PlusIcon className="size-8"
+                />
+            </button>
+        )
+    }
+
+    const clickInPlus = () =>{
+
+        return (
+            <button className="absolute top-0 right-0 flex justify-center items-center rounded-xl bg-black text-[#C0D7BD] w-6 h-6 m-2 p-1 font-semibold text-md border border-white" 
+                
+                onClick={(noDetailOpen)=>{
+                    noDetailOpen.stopPropagation()
+                    addProductsToCard(data.data)
+                }}
+                >
+                    <PlusIcon className="size-8"
+                />
+            </button>
+        )
+
+    }
+
+
+    const renderIcon = (id)=>{
+        const isInCart =  context.cartProducts.filter(product=>product.id === id).length > 0
+
+        if (isInCart) {
+
+        return clickInPlus()
+
+        } else {
+
+        return noClickInPlus()
+        }
+
+    }
+
 
     return (
 
@@ -37,18 +85,7 @@ const Card = (data)=> {
                 <img className="w-full h-full object-fill rounded-lg"
                 src={data.data.image} alt={data.data.title + 'img'}  />
 
-                
-
-                <button className="absolute top-0 right-0 flex justify-center items-center rounded-md bg-[#59A0A2] text-[#C0D7BD] w-6 h-6 m-2 p-1 font-semibold text-md " 
-                
-                onClick={(noDetailOpen)=>{
-                    noDetailOpen.stopPropagation()
-                    addProductsToCard(data.data)
-                }}
-                >
-                    <PlusIcon className="size-8"
-                    />
-                </button>
+                {renderIcon(data.data.id)}
 
             </figure>
             <p className="flex justify-evenly items-center w-full px-2">

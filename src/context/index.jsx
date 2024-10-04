@@ -25,9 +25,10 @@ export const ShoppingCartProvider  = ( {children} )=> {
   
 
   // cart products
-  
 
   const [cartProducts, setCartProducts] = useState([]);
+
+  const [productQuantity, setProductQuantity] = useState(0);
 
 
   return (
@@ -46,7 +47,9 @@ export const ShoppingCartProvider  = ( {children} )=> {
           setCartProducts,
           closeCheckoutSideMenu,
           openCheckoutSideMenu,
-          isCheckoutSideMenuOpen
+          isCheckoutSideMenuOpen,
+          productQuantity,
+          setProductQuantity
         }
       }
     >

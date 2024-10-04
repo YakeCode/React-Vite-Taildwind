@@ -10,6 +10,12 @@ import { OrderCard } from "../OrderCard/index"
 function CheckoutSideMenu() {
     const context = useContext(ShoppingCartContext)
 
+    const handleDelete = (id)=>{
+        const filteredProducts =  
+            context.cartProducts.filter((product)=> product.id != id)
+            context.setCartProducts(filteredProducts)
+    }
+
     return (
         <aside 
         
@@ -35,6 +41,8 @@ function CheckoutSideMenu() {
                             imageUrl={product.image}
                             title ={product.title}
                             price ={product.price}
+                            handleDelete = {handleDelete}
+                            id = {product.id}
                         />
                     ))
                 }
