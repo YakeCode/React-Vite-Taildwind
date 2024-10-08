@@ -6,18 +6,32 @@ import { ShoppingCartContext } from "../../context"
 const Card = (data)=> {
 
     const context = useContext(ShoppingCartContext)
+
     const showProduct = (productdetail)=>{
         context.openProductDetail()
         context.setProductToShow(productdetail)
         context.closeCheckoutSideMenu()
+        console.log(`show product : ${showProduct}`)
     }
 
-    const addProductsToCard = (productData)=> {
-        context.closeProductDetail()
+    const addProductsToCard = (productData) => {
+        const productIndex = context.cartProducts.findIndex( product => product.id === productData.id);
+    
+        if (productIndex === -1) {
+            // Producto no existe en el carrito, se agrega con cantidad inicial
+            context.setCartProducts([...context.cartProducts, { ...productData, productQuantity : 1 }]);
+        } else {
+            // Producto ya existe, se actualiza la cantidad
+            const updatedProducts = [...context.cartProducts.id];
+            updatedProducts[productIndex].quantity += 1;
+            context.setCartProducts(updatedProducts);
+        }
+    
         context.setCount(context.count + 1);
-        context.setCartProducts([...context.cartProducts, productData])
-        context.openCheckoutSideMenu()
-    }
+        context.openCheckoutSideMenu();
+        context.setProductQuantity(context.productQuantity + 1);
+    };
+    
 
     const noClickInPlus = ()=>{
 
@@ -42,7 +56,7 @@ const Card = (data)=> {
                 
                 onClick={(noDetailOpen)=>{
                     noDetailOpen.stopPropagation()
-                    addProductsToCard(data.data)
+                    context.setProductQuantity(context.productQuantity +1)
                 }}
                 >
                     <PlusIcon className="size-8"

@@ -1,10 +1,9 @@
-
-
 import './style.css'
 import { XCircleIcon } from "@heroicons/react/16/solid"
 import { useContext } from "react"
 import { ShoppingCartContext } from "../../context"
 import { OrderCard } from "../OrderCard/index"
+import { totalPrice } from "../../utils/index"
 
 
 function CheckoutSideMenu() {
@@ -14,6 +13,7 @@ function CheckoutSideMenu() {
         const filteredProducts =  
             context.cartProducts.filter((product)=> product.id != id)
             context.setCartProducts(filteredProducts)
+            context.setCount(context.count - 1)
     }
 
     return (
@@ -47,6 +47,11 @@ function CheckoutSideMenu() {
                     ))
                 }
                     
+                </div>
+
+                <div>
+                    <p>{`Total: ${totalPrice(context.cartProducts)}`}</p>
+
                 </div>
                 
 

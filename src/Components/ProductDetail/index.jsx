@@ -84,9 +84,6 @@ function ProductDetail() {
                     </button>
 
                 </div>
-
-                
-
             </div>
 
         </aside>
