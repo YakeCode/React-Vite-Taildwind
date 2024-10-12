@@ -1,4 +1,4 @@
-export const totalPrice = (products) => {
+/*export const totalPrice = (products) => {
     let sum = 0;
     products.forEach(product => {
         if (product && product.price) { // Verifica que el producto y su precio existan
@@ -6,4 +6,8 @@ export const totalPrice = (products) => {
         }
     });
     return sum;
+};*/
+
+export const totalPrice = (products) => {
+    return products.reduce((acc, product) => acc + (product.price * product.productQuantity), 0).toFixed(2);
 };
