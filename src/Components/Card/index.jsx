@@ -37,7 +37,7 @@ const Card = ({ data })=> {
             context.setCartProducts(updatedProducts);
         }
     
-        context.setCount(context.count + 1);
+        
         context.openCheckoutSideMenu();
         context.setProductQuantity(context.productQuantity + 1);
     };
@@ -51,6 +51,7 @@ const Card = ({ data })=> {
                 onClick={(noDetailOpen)=>{
                     noDetailOpen.stopPropagation()
                     addProductsToCard(data)
+                    context.setCount(context.count + 1);
                 }}
                 >
                     <PlusIcon className="size-8"

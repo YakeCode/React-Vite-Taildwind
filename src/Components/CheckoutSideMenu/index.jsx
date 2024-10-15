@@ -16,6 +16,18 @@ function CheckoutSideMenu() {
             context.setCount(context.count - 1)
     }
 
+    const handleCheckout =()=>{
+        const orderToAdd = {
+            date : '01.02.24',
+            products : context.cartProducts,
+            totalProducts:  context.cartProducts.length,
+            totalPrice: totalPrice(context.cartProducts),
+        }
+
+        context.setOrder([...context.order, orderToAdd])
+        context.setCartProducts([])
+        context.setCount(0)
+    }
     return (
         <aside 
         
@@ -37,7 +49,7 @@ function CheckoutSideMenu() {
                 {
                     context.cartProducts.map((product, index)=>(
                         <OrderCard
-                            key={`${product.id}+${index}`}
+                            key={`${product.id}+${index}+${product.title}`}
                             imageUrl={product.image}
                             title ={product.title}
                             price ={product.price}
@@ -49,17 +61,19 @@ function CheckoutSideMenu() {
                     
                 </div>
 
-                <div>
-                    <p>{`Total: ${totalPrice(context.cartProducts)}`}</p>
+                <div className='w-full flex justify-center items-center'>
+                    <p className='w-3/5 text-center text-xl font-medium text-[#354A6F]/70'>
+                        {`Total: ${totalPrice(context.cartProducts)}`}</p>
 
                 </div>
                 
 
-                <button className="w-full flex justify-center h-[6%] items-center absolute bottom-0 m-4"
+                <button className="w-full flex justify-center h-[7%] items-center absolute bottom-6 "
+                    onClick={()=>handleCheckout()}
                 >
-                    <div className="flex justify-center items-center bg-[#59A0A2] w-3/5 h-full text-white rounded-md"
+                    <div className="flex justify-center items-center bg-[#59A0A2] w-2/5 h-full text-white rounded-md"
                     >
-                        <p>Pay My Order</p>
+                        <p className='text-xl font-[400]'>Checkout</p>
                     </div>
                 </button>
             </div>
