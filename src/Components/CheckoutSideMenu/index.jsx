@@ -1,6 +1,7 @@
 import './style.css'
-import { XCircleIcon } from "@heroicons/react/16/solid"
 import { useContext } from "react"
+import { Link } from 'react-router-dom'
+import { XCircleIcon } from "@heroicons/react/16/solid"
 import { ShoppingCartContext } from "../../context"
 import { OrderCard } from "../OrderCard/index"
 import { totalPrice } from "../../utils/index"
@@ -67,15 +68,18 @@ function CheckoutSideMenu() {
 
                 </div>
                 
-
-                <button className="w-full flex justify-center h-[7%] items-center absolute bottom-6 "
+                <Link to='/my-orders/last'>
+                    <button className="w-full flex justify-center h-[7%] items-center absolute bottom-6 "
                     onClick={()=>handleCheckout()}
-                >
-                    <div className="flex justify-center items-center bg-[#59A0A2] w-2/5 h-full text-white rounded-md"
                     >
-                        <p className='text-xl font-[400]'>Checkout</p>
-                    </div>
-                </button>
+                        <div className="flex justify-center items-center bg-[#59A0A2] w-2/5 h-full text-white rounded-md"
+                        >
+                            <p className='text-xl font-[400]'>Checkout</p>
+                        </div>
+                    </button>
+                </Link>
+
+
             </div>
             
 

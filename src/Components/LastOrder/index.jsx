@@ -1,27 +1,16 @@
 /* eslint-disable react/prop-types */
 
 import { useContext } from "react"
-
-import { TrashIcon } from "@heroicons/react/16/solid"
-
 import { ShoppingCartContext } from "../../context/index"
 
-const OrderCard = props => {
+const LastOrder = props => {
     const context = useContext(ShoppingCartContext);
-    const { imageUrl, title, price, handleDelete, id, } = props;
-
-    let renderTrashIcon ;
-
-    if ( handleDelete ) {
-        renderTrashIcon = <span onClick={() => handleDelete(id)}>
-                <TrashIcon className="w-5 h-5 cursor-pointer"/>
-            </span>
-    }
+    const { imageUrl, title, price, id, quantity, } = props;
 
   // Encuentra el producto en el carrito para obtener la cantidad
     const cartItem = context.cartProducts.find(product => product.id === id);
     console.log('CART-ITEM;',cartItem)
-    const quantity = cartItem ? cartItem.productQuantity : 0;
+    //const quantity = cartItem ? cartItem.productQuantity : 0;
 
     return (
         <div className="flex flex-col my-1">
@@ -45,11 +34,11 @@ const OrderCard = props => {
                     <span className="text-lg font-medium">
                       {price * quantity}
                     </span>
-                    {renderTrashIcon}
                 </div>
             </div>
         </div>
+        
     );
 };
 
-export { OrderCard } 
+export { LastOrder }
