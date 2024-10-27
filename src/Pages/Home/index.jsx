@@ -1,28 +1,36 @@
 //import React from 'react'
-import { useState, useEffect } from "react"
+import { useContext } from "react"
 import Card from "../../Components/Card"
 import { Layout } from "../../Components/Layout"
 import { ProductDetail } from "../../Components/ProductDetail"
+import { ShoppingCartContext } from "../../context"
+import { MagnifyingGlassIcon } from "@heroicons/react/16/solid"
 
 function Home() {
 
-    const [items, setItems] = useState(null)
+    const context = useContext(ShoppingCartContext)
 
-    useEffect(() => {
-        fetch('https://fakestoreapi.com/products')
-            .then(response => response.json())
-            .then(data => setItems(data))
-            .catch((error) => {
-                console.log(error)
-            })
-    }, [])
 
     return (
         <Layout>
-            <div className="w-[65%] grid grid-cols-[repeat(auto-fit,minmax(15rem,1fr))] gap-7 my-12" >
+
+            <div>
+                <h1 className="text-center mb-2 font-medium text-lg">Exclusive Products</h1>
+                <div className="flex items-center relative" >
+                    <input type="text"
+                        placeholder="Search a Product "
+                        className="w-80 rounded-md px-4 py-4 border border-slate-500 focus:outline-[#354A6F]/40"
+                        onChange={(event) => context.setSearchByTitle(event.target.value)}
+                    />
+                    <MagnifyingGlassIcon className="w-6 h-6 absolute right-2 opacity-50" />
+
+                </div>
+            </div>
+
+            <div className="w-[65%] grid grid-cols-[repeat(auto-fit,minmax(15rem,1fr))] gap-7 my-8" >
 
                 {
-                    items?.map((item) => (
+                    context.items?.map((item) => (
                         <Card
                             key={item.id}
                             data={item}

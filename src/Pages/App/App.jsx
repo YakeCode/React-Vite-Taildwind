@@ -11,18 +11,17 @@ import { Navbar } from '../../Components/Navbar'
 import { ShoppingCartProvider } from '../../context'
 import { CheckoutSideMenu } from '../../Components/CheckoutSideMenu/index';
 
-
-
-const AppRoutes = ()=>{
-  let routes = useRoutes (
+const AppRoutes = () => {
+  let routes = useRoutes(
     [
-      { path : '/', element : <Home/> },
-      { path : '/my-account', element : <MyAccount/> },
-      { path : '/my-order', element : <MyOrder/> },
-      { path : '/my-orders', element : <MyOrders/> },
-      { path : '/my-orders/last', element : <MyOrder/> },
-      { path : '/not-found', element : <NotFound/>},
-      { path : '/sign-in', element : <SignIn/>},
+      { path: '/', element: <Home /> },
+      { path: '/my-account', element: <MyAccount /> },
+      { path: '/my-order', element: <MyOrder /> },
+      { path: '/my-orders', element: <MyOrders /> },
+      { path: '/my-orders/last', element: <MyOrder /> },
+      { path: '/my-orders/:id', element: <MyOrder /> },
+      { path: '/not-found', element: <NotFound /> },
+      { path: '/sign-in', element: <SignIn /> },
     ]
   )
   return routes
@@ -32,12 +31,12 @@ function App() {
   return (
     <ShoppingCartProvider>
       <BrowserRouter>
-      <AppRoutes/>
-      <Navbar/>
-      <CheckoutSideMenu/>
-    </BrowserRouter>
+        <AppRoutes />
+        <Navbar />
+        <CheckoutSideMenu />
+      </BrowserRouter>
     </ShoppingCartProvider>
   )
 }
 
-export default App
+export default App;

@@ -9,7 +9,9 @@ import { ChevronDoubleLeftIcon } from "@heroicons/react/16/solid"
 function MyOrder() {
 
   const context = useContext(ShoppingCartContext)
-  console.log('context order', context.order?.slice(-1)[0])
+  //console.log('context order', context.order?.slice(-1)[0])
+  const currentPath = window.location.pathname
+
   const lastOrder = context.order.slice(-1)[0]
 
   return (

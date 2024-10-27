@@ -16,9 +16,12 @@ function CheckoutSideMenu() {
         context.setCount(context.count - 1)
     }
 
+    const today = new Date();
+    const formattedDate = today.toLocaleString('es-CO', { timeZone: 'America/Bogota' });
+
     const handleCheckout = () => {
         const orderToAdd = {
-            date: '01.02.24',
+            date: formattedDate,
             products: context.cartProducts,
             totalProducts: context.cartProducts.length,
             totalPrice: totalPrice(context.cartProducts),
