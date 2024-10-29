@@ -1,6 +1,6 @@
 //import React from 'react'
 
-import { ShoppingBagIcon} from "@heroicons/react/16/solid"
+import { ShoppingBagIcon } from "@heroicons/react/16/solid"
 
 import { NavLink } from "react-router-dom"
 import { useContext } from "react"
@@ -15,7 +15,7 @@ const Navbar = () => {
     return (
 
         <nav className="top-0 w-full flex justify-around items-center fixed z-10 py-4 px-8 text-sm font-light bg-white">
-        {/*left nav */}
+            {/*left nav */}
             <ul className="flex items-center gap-5">
                 <li className="font-semibold text-2xl text-[#354A6F]/70">
                     <NavLink to='/'>
@@ -24,9 +24,13 @@ const Navbar = () => {
                 </li>
 
                 <li>
-                    <NavLink 
+                    <NavLink
                         to='/'
-                        className = {({isActive})=> 
+                        onClick={() => {
+                            context.setSearchByTitle("");
+                            context.setSearchByCategory("");
+                        }}
+                        className={({ isActive }) =>
                             isActive ? activeStyle : undefined
                         }
                     >
@@ -35,9 +39,12 @@ const Navbar = () => {
                 </li>
 
                 <li>
-                    <NavLink 
+                    <NavLink
                         to='/clothes'
-                        className = {({isActive})=> 
+
+                        onClick={() => context.setSearchByCategory("clothing")}
+
+                        className={({ isActive }) =>
                             isActive ? activeStyle : undefined
                         }
                     >
@@ -46,9 +53,12 @@ const Navbar = () => {
                 </li>
 
                 <li>
-                    <NavLink 
+                    <NavLink
                         to='/electronics'
-                        className = {({isActive})=> 
+
+                        onClick={() => context.setSearchByCategory("electronics")}
+
+                        className={({ isActive }) =>
                             isActive ? activeStyle : undefined
                         }
                     >
@@ -57,39 +67,48 @@ const Navbar = () => {
                 </li>
 
                 <li>
-                    <NavLink 
-                        to='/furnitures'
-                        className = {({isActive})=> 
+                    <NavLink
+                        to='/jewelery'
+
+                        onClick={() => context.setSearchByCategory("jewelery")}
+
+                        className={({ isActive }) =>
                             isActive ? activeStyle : undefined
                         }
                     >
-                        Furnitures
+                        Jewelery
                     </NavLink>
                 </li>
 
                 <li>
-                    <NavLink 
-                        to='/toys'
-                        className = {({isActive})=> 
+                    <NavLink
+                        to='/mens'
+
+                        onClick={() => context.setSearchByCategory("men's clothing")}
+
+                        className={({ isActive }) =>
                             isActive ? activeStyle : undefined
                         }
                     >
-                        Toys
+                        Men's clothing
                     </NavLink>
                 </li>
 
                 <li>
-                    <NavLink 
-                        to='/others'
-                        className = {({isActive})=> 
+                    <NavLink
+                        to='/womens'
+
+                        onClick={() => context.setSearchByCategory("women's clothing")}
+
+                        className={({ isActive }) =>
                             isActive ? activeStyle : undefined
                         }
                     >
-                        Others
+                        Women's Clothing
                     </NavLink>
                 </li>
             </ul>
-        {/*right nav */}
+            {/*right nav */}
             <ul className="flex items-center gap-5">
 
                 <li className="text-black/70">
@@ -97,9 +116,9 @@ const Navbar = () => {
                 </li>
 
                 <li>
-                    <NavLink 
+                    <NavLink
                         to='/my-orders'
-                        className = {({isActive})=> 
+                        className={({ isActive }) =>
                             isActive ? activeStyle : undefined
                         }
                     >
@@ -108,9 +127,9 @@ const Navbar = () => {
                 </li>
 
                 <li>
-                    <NavLink 
+                    <NavLink
                         to='/my-account'
-                        className = {({isActive})=> 
+                        className={({ isActive }) =>
                             isActive ? activeStyle : undefined
                         }
                     >
@@ -119,9 +138,9 @@ const Navbar = () => {
                 </li>
 
                 <li>
-                    <NavLink 
+                    <NavLink
                         to='/sign-in'
-                        className = {({isActive})=> 
+                        className={({ isActive }) =>
                             isActive ? activeStyle : undefined
                         }
                     >
@@ -130,7 +149,7 @@ const Navbar = () => {
                 </li>
 
                 <li className="flex  ">
-                    <ShoppingBagIcon className="size-7 text-[#59A0A2] "/>    
+                    <ShoppingBagIcon className="size-7 text-[#59A0A2] " />
                     <span className="text-xs font-semibold h-4 w-4 flex items-center justify-center bg-[#d1e9ce] text-[#4f9092] border-slate-300 rounded-md">
                         {context.count}
                     </span>
@@ -142,4 +161,4 @@ const Navbar = () => {
     )
 }
 
-export {Navbar}
+export { Navbar }
