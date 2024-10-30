@@ -10,12 +10,25 @@ function ProductDetail() {
 
     const product = context.productToShow
 
-    const addProductsToCard = (productData)=> {
+    const addProductsToCard = (productData) => {
+        const productIndex = context.cartProducts.findIndex(product => product.id === productData.id);
+
+        if (productIndex === -1) {
+            // Producto no existe en el carrito, se agrega con cantidad inicial
+            context.setCartProducts([...context.cartProducts, { ...productData, productQuantity: 1 }])
+            context.setCount(context.count + 1);
+        } else {
+            // Producto ya existe, se actualiza la cantidad
+            const updatedProducts = [...context.cartProducts];
+            updatedProducts[productIndex].productQuantity += 1;
+            context.setCartProducts(updatedProducts);
+        }
+        context.openCheckoutSideMenu();
+        context.setProductQuantity(context.productQuantity + 1);
         context.closeProductDetail()
-        context.setCount(context.count + 1);
-        context.setCartProducts([...context.cartProducts, productData])
-        context.openCheckoutSideMenu()
-    }
+
+    };
+
 
     useEffect(() => {
         if (context.productToShow.id) {
@@ -24,9 +37,9 @@ function ProductDetail() {
     }, [context.productToShow])
 
     return (
-        <aside 
-        
-        className={`${context.isProductDetailOpen ? 'flex' : 'hidden' } product-detail  flex-col fixed right-0 border border-black rounded-lg bg-white `}
+        <aside
+
+            className={`${context.isProductDetailOpen ? 'flex' : 'hidden'} product-detail  flex-col fixed right-0 border border-black rounded-lg bg-white `}
         >
             <div className="flex justify-between items-evenly px-4 pt-2">
                 <h2 className="font-medium text-2xl text-[#354A6F]/70"
@@ -34,7 +47,7 @@ function ProductDetail() {
                 </h2>
                 <span className=" bg-white ">
                     <XCircleIcon className="size-5 cursor-pointer"
-                    onClick={()=>context.closeProductDetail()}
+                        onClick={() => context.closeProductDetail()}
                     />
                 </span>
             </div>
@@ -43,10 +56,10 @@ function ProductDetail() {
 
                 <div className="w-full h-[40%] flex flex-col">
                     <figure className="w-full h-[75%] flex  justify-center">
-                    <img 
-                        src={product.image} 
-                        alt={product.title} 
-                        className="w-10/12 h-full rounded-lg cover"/>
+                        <img
+                            src={product.image}
+                            alt={product.title}
+                            className="w-10/12 h-full rounded-lg cover" />
                     </figure>
 
                     <div className="h-15%">
@@ -59,7 +72,7 @@ function ProductDetail() {
                         </h3>
                     </div>
 
-                    
+
 
                 </div>
 
@@ -73,15 +86,15 @@ function ProductDetail() {
                         ${product.price}
                     </span>
 
-                    <button className="w-full flex justify-center h-[12%] items-center "
-                        onClick={()=>{addProductsToCard(context.productToShow)}}
+                    {<button className="w-full flex justify-center h-[12%] items-center "
+                        onClick={() => { addProductsToCard(context.productToShow) }}
                     >
                         <div className="flex justify-center items-center bg-[#59A0A2] w-3/5 h-full text-white rounded-md"
                         >
                             <p>Add To Cart</p>
-                            <ShoppingCartIcon className=" size-7 "/>
+                            <ShoppingCartIcon className=" size-7 " />
                         </div>
-                    </button>
+                    </button>}
 
                 </div>
             </div>
@@ -90,4 +103,4 @@ function ProductDetail() {
     )
 }
 
-export {ProductDetail}
+export { ProductDetail }

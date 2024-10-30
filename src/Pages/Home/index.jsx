@@ -11,30 +11,18 @@ function Home() {
 
     const renderView = () => {
         if (context.filteredItems?.length > 0) {
-
-            if (context.filteredItems?.length > 0) {
-                return context.filteredItems?.map((item) => (
-                    <Card
-                        key={item.id}
-                        data={item}
-                    />
-                ))
-            } else {
-                return (
-                    <h1 className="text-center text-slate-600 text-2xl font-medium mt-4">We don't have anything</h1>
-                )
-            }
-
-        } else {
-            return context.items?.map((item) => (
+            return (context.filteredItems?.map((item) => (
                 <Card
                     key={item.id}
                     data={item}
                 />
-            ));
+            )))
+        } else {
+            return (
+                <h1 className="text-center text-slate-600 text-2xl font-medium mt-4">We don't have anything</h1>
+            )
         }
-    };
-
+    }
     return (
         <Layout>
             <div>

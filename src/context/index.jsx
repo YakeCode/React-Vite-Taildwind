@@ -48,14 +48,12 @@ export const ShoppingCartProvider = ({ children }) => {
   const initialCategory = localStorage.getItem("searchByCategory") || null;
   const [searchByCategory, setSearchByCategory] = useState(initialCategory);
 
-  console.log("searchByCategory :", searchByCategory)
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch('https://fakestoreapi.com/products');
         const data = await response.json();
-        console.log("Datos de productos:", data[0]); // Inspecciona el primer producto
+        //console.log("Datos de productos:", data[0]); // Inspecciona el primer producto
         setItems(data);
       } catch (error) {
         console.error(error);
@@ -63,7 +61,6 @@ export const ShoppingCartProvider = ({ children }) => {
     };
     fetchData();
   }, []);
-
 
   const filteredItemsByTitle = (items, searchByTitle) => {
     return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
@@ -79,7 +76,7 @@ export const ShoppingCartProvider = ({ children }) => {
     if (searchType === "BY_TITLE") {
       return filteredItemsByTitle(items, searchByTitle)
     }
-    if (searchType === "BY_CATEGORY") { // Corregido aquí
+    if (searchType === "BY_CATEGORY") {
       return filteredItemsByCategory(items, searchByCategory)
     }
     if (searchType === "BY_TITLE_AND_CATEGORY") {
